@@ -1,0 +1,25 @@
+name: Build and Publish Docker Image
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build Docker image
+        run: |
+          docker buildx create --use
+          docker buildx build -t $IMAGE_NAME:$GITHUB_SHA -f Dockerfile .
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+      - name: Push Docker image to GitHub Container Registry
+        run: docker push $IMAGE_NAME:$GITHUB_SHA:$GITHUB_SHA
