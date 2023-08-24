@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
+      IMAGE_NAME: ghcr.io/gardusig/clientfix/client-image
       TAG: ${{ github.event.release.tag_name }}
     steps:
       - name: Checkout code
