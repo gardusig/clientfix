@@ -22,4 +22,4 @@ jobs:
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ghcr.io -u gardusig --password-stdin
       - name: Push Docker image to GitHub Container Registry
-        run: docker push ghcr.io/gardusig/clientfix/$IMAGE_NAME
+        run: docker push ghcr.io/gardusig/$IMAGE_NAME
