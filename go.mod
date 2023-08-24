@@ -1,4 +1,4 @@
-module github.com/gardusig/fix_service/client
+module github.com/gardusig/clientfix
 
 go 1.21.0
 
