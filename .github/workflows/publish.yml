@@ -9,8 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: ghcr.io/gardusig/clientfix/client-image
-      TAG: ${{ github.event.release.tag_name }}
+      IMAGE_NAME: client-image:${{ github.event.release.tag_name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -19,8 +18,8 @@ jobs:
       - name: Build Docker image
         run: |
           docker buildx create --use
-          docker buildx build -t $IMAGE_NAME:$TAG -f Dockerfile .
+          docker buildx build -t $IMAGE_NAME -f Dockerfile .
       - name: Log in to GitHub Container Registry
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ghcr.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login ghcr.io -u gardusig --password-stdin
       - name: Push Docker image to GitHub Container Registry
-        run: docker push $IMAGE_NAME:$TAG
+        run: docker push ghcr.io/gardusig/clientfix/$IMAGE_NAME
