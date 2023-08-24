@@ -5,12 +5,16 @@ import (
 	"path"
 	"time"
 
-	"github.com/gardusig/fix"
+	"github.com/gardusig/clientfix"
+	"github.com/gardusig/clientfix/internal/application"
 )
 
 func main() {
 	fmt.Println("Starting client...")
-	client, err := fix.NewClient(path.Join("config", "fix.cfg"))
+	client, err := clientfix.NewClient(
+		path.Join("config", "fix.cfg"),
+		application.Application{},
+	)
 	if err != nil {
 		panic(err)
 	}

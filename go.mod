@@ -2,7 +2,10 @@ module github.com/gardusig/clientfix
 
 go 1.21.0
 
-require github.com/gardusig/fix v1.0.0
+require (
+	github.com/quickfixgo/quickfix v0.7.0
+	github.com/sirupsen/logrus v1.9.3
+)
 
 require (
 	github.com/armon/go-proxyproto v0.0.0-20210323213023-7e956b284f0a // indirect
@@ -10,9 +13,7 @@ require (
 	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/quickfixgo/quickfix v0.7.0 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
-	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.2 // indirect
 	github.com/xdg-go/stringprep v1.0.4 // indirect
